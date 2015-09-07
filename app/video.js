@@ -1,4 +1,5 @@
 import React from "react";
+import PhotoStore from './photo-store';
 
 class Video extends React.Component {
   componentDidMount() {
@@ -14,6 +15,8 @@ class Video extends React.Component {
     navigator.getUserMedia(mediaOptions, success, function(e) {
       console.log(e);
     });
+
+    PhotoStore.addChangeListener(this.takeSnapshot.bind(this))
   }
 
   render() {
@@ -21,6 +24,9 @@ class Video extends React.Component {
       <video autoPlay="true" style={{width: '800px', height: '600px'}}>
       </video>
     );
+  }
+
+  takeSnapshot() {
   }
 }
 
