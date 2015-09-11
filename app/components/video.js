@@ -26,12 +26,12 @@ class Video extends React.Component {
 
   takeSnapshot() {
     let canvas = document.createElement('canvas');
-    canvas.width = WIDTH;
-    canvas.height = HEIGHT;
+    canvas.width = 200;
+    canvas.height = 150;
 
     let context = canvas.getContext('2d');
 
-    context.drawImage(this.video(), 0, 0, WIDTH, HEIGHT);
+    context.drawImage(this.video(), 0, 0, 200, 150);
 
     var data = canvas.toDataURL('image/png');
 
