@@ -1,7 +1,7 @@
 import React from "react";
-import Video from "./video";
+import Photobooth from "./photobooth";
 
 React.render(
-  <Video/>,
+  <Photobooth/>,
   document.body
 );
