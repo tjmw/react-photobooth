@@ -6,6 +6,7 @@ class Photobooth extends React.Component {
   render() {
     return (
       <div className="photobooth">
+        <h1>React Photobooth</h1>
         <Video />
         <SnapshotList />
       </div>
