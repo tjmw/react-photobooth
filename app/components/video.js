@@ -9,15 +9,17 @@ class Video extends React.Component {
     let mediaOptions = { audio: false, video: true };
     let video = this.video();
 
-    let success = function(stream) {
-      video.src = window.URL.createObjectURL(stream);
-    }
-
     navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
 
-    navigator.getUserMedia(mediaOptions, success, function(e) {
-      console.log(e);
-    });
+    let success = function(stream) {
+      video.src = window.URL.createObjectURL(stream);
+    };
+
+    let error = function(e) {
+      console.log(e)
+    };
+
+    navigator.getUserMedia(mediaOptions, success, error);
   }
 
   video() {
