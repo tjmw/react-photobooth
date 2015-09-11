@@ -1,5 +1,5 @@
 import React from 'react';
-import Actions from './actions';
+import Actions from '../actions';
 
 const WIDTH = 800;
 const HEIGHT = 600;

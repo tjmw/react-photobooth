@@ -1,4 +1,4 @@
-import AppDispatcher from './app-dispatcher.js';
+import AppDispatcher from '../app-dispatcher.js';
 import BaseStore from './base-store.js';
 
 const PLACEHOLDER_SNAPSHOT = 'https://placeholdit.imgix.net/~text?txtsize=50&txt=Wait%20for%20it&w=800&h=600';

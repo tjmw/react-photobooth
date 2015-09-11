@@ -1,5 +1,5 @@
 import React from 'react';
-import SnapshotStore from './snapshot-store';
+import SnapshotStore from '../stores/snapshot-store';
 
 class Snapshot extends React.Component {
   constructor(props) {
