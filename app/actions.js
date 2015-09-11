@@ -7,7 +7,15 @@ const snapshot = (image_data) => {
   });
 };
 
+const initiateCountdown = () => {
+  console.log('Countdown initiated');
+  AppDispatcher.dispatch({
+    type: 'initiate-countdown'
+  });
+};
+
 export default {
-  snapshot
+  snapshot,
+  initiateCountdown
 };
 

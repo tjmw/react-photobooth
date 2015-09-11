@@ -1,7 +1,16 @@
 import React from 'react';
 import Actions from '../actions';
+import CountdownStore from '../stores/countdown-store';
 
 class Video extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      snapshotButtonDisabled: false
+    };
+  }
+
   componentDidMount() {
     let mediaOptions = { audio: false, video: true };
     let video = this.video();
@@ -17,6 +26,8 @@ class Video extends React.Component {
     };
 
     navigator.getUserMedia(mediaOptions, success, error);
+
+    CountdownStore.addChangeListener(this.takeSnapshot.bind(this));
   }
 
   video() {
@@ -24,6 +35,10 @@ class Video extends React.Component {
   }
 
   takeSnapshot() {
+    if (CountdownStore.getTimeLeft() != 0) {
+      return;
+    }
+
     let canvas = document.createElement('canvas');
     const width = 200;
     const height = 150;
@@ -40,13 +55,20 @@ class Video extends React.Component {
     var data = canvas.toDataURL('image/png');
 
     Actions.snapshot(data);
+
+    this.setState({ snapshotButtonDisabled: false });
+  }
+
+  initiateCountdown() {
+    this.setState({ snapshotButtonDisabled: true });
+    Actions.initiateCountdown();
   }
 
   render() {
     return (
       <div className='video'>
         <video ref="video" autoPlay="true"></video>
-        <button onClick={this.takeSnapshot.bind(this)}>Take snapshot</button>
+        <button disabled={this.state.snapshotButtonDisabled} onClick={this.initiateCountdown.bind(this)}>Take snapshot</button>
       </div>
     );
   }
