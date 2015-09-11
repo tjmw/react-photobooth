@@ -1,9 +1,6 @@
 import React from 'react';
 import Actions from '../actions';
 
-const WIDTH = 800;
-const HEIGHT = 600;
-
 class Video extends React.Component {
   componentDidMount() {
     let mediaOptions = { audio: false, video: true };
@@ -28,12 +25,17 @@ class Video extends React.Component {
 
   takeSnapshot() {
     let canvas = document.createElement('canvas');
-    canvas.width = 200;
-    canvas.height = 150;
+    const width = 200;
+    const height = 150;
+
+    canvas.width = width;
+    canvas.height = height;
 
     let context = canvas.getContext('2d');
+    context.translate(width, 0);
+    context.scale(-1, 1);
 
-    context.drawImage(this.video(), 0, 0, 200, 150);
+    context.drawImage(this.video(), 0, 0, width, height);
 
     var data = canvas.toDataURL('image/png');
 
@@ -42,8 +44,8 @@ class Video extends React.Component {
 
   render() {
     return (
-      <div>
-        <video ref="video" autoPlay="true" style={{width: WIDTH + 'px', height: HEIGHT + 'px'}}></video>
+      <div className='video'>
+        <video ref="video" autoPlay="true"></video>
         <button onClick={this.takeSnapshot.bind(this)}>Take snapshot</button>
       </div>
     );
