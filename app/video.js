@@ -18,7 +18,7 @@ class Video extends React.Component {
 
   render() {
     return (
-      <video autoPlay="true" style={{width: '800px', height: '600px'}}>
+      <video autoPlay="true" style={{width: '800px'}}>
       </video>
     );
   }
