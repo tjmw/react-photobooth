@@ -16,7 +16,7 @@ class SnapshotButton extends React.Component {
   }
 
   countdownChanged() {
-    if (CountdownStore.getTimeLeft() != 0) {
+    if (CountdownStore.getTimeLeft() == 0) {
       this.setState({ snapshotButtonDisabled: false });
     }
   }
