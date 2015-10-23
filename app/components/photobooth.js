@@ -3,20 +3,22 @@ import { connect } from 'react-redux';
 import Video from './video';
 import SnapshotButton from './snapshot-button';
 import SnapshotList from './snapshot-list';
-import { captureSnapshot } from '../actions';
+import Countdown from './countdown';
+import { captureSnapshot, initiateCountdown } from '../actions';
 import Immutable from 'immutable';
 
 class Photobooth extends React.Component {
   render() {
-    const { dispatch, snapshots } = this.props;
+    const { dispatch, counter, snapshots } = this.props;
 
     return (
       <div className="photobooth">
         <h1>React Photobooth</h1>
         <div className="video">
           <Video ref="video" />
-          <SnapshotButton disabled={false} onClick={() => dispatch(captureSnapshot(this.refs.video.video())) }/>
+          <SnapshotButton disabled={false} onClick={() => dispatch(initiateCountdown(this.refs.video.video())) }/>
         </div>
+        <Countdown counter={counter}/>
         <SnapshotList snapshots={snapshots}/>
       </div>
     );
@@ -31,7 +33,8 @@ Photobooth.propTypes = {
 // Note: use https://github.com/faassen/reselect for better performance.
 function select(state) {
   return {
-    snapshots: state.get('snapshots')
+    snapshots: state.get('snapshots'),
+    counter: state.get('counter')
   }
 }
 
