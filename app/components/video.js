@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import Actions from '../actions';
 
 class Video extends React.Component {
@@ -20,7 +21,7 @@ class Video extends React.Component {
   }
 
   video() {
-    return React.findDOMNode(this.refs.video)
+    return ReactDOM.findDOMNode(this.refs.video)
   }
 
   render() {
