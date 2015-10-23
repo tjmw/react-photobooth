@@ -1,33 +1,24 @@
-import React from 'react';
-import SnapshotStore from '../stores/snapshot-store';
+import React, { Component, PropTypes } from 'react';
 import Snapshot from './snapshot';
 
 class SnapshotList extends React.Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      snapshotList: SnapshotStore.getSnapshotList()
-    };
-  }
-
-  componentDidMount() {
-    SnapshotStore.addChangeListener(this.setSnapshot.bind(this));
-  }
-
-  setSnapshot() {
-    this.setState({snapshot: SnapshotStore.getSnapshotList()});
   }
 
   render() {
     return (
       <ul className='snapshot-list'>
-        {this.state.snapshotList.map((image, idx) => {
+        {this.props.snapshots.map((image, idx) => {
           return <Snapshot key={idx} image={image} />
         })}
       </ul>
     );
   }
 }
+
+SnapshotList.propTypes = {
+  snapshots: PropTypes.array.isRequired
+};
 
 export default SnapshotList;

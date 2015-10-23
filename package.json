@@ -26,7 +26,9 @@
     "webpack-dev-server": "^1.10.1"
   },
   "dependencies": {
-    "react": "^0.13.3",
-    "flux": "^2.0.3"
+    "react": "^0.14.0",
+    "redux": "^3.0.2",
+    "react-redux": "^3.1.0",
+    "redux-thunk": "^1.0.0"
   }
 }
