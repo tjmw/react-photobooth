@@ -9,8 +9,6 @@ export function requestSnapshot() {
 
 export function captureSnapshot(video) {
   return function(dispatch) {
-    dispatch(requestSnapshot());
-
     let image_data = captureSnapshotFromVideo(video);
 
     dispatch(receiveSnapshot(image_data));
@@ -19,6 +17,8 @@ export function captureSnapshot(video) {
 
 export function initiateCountdown(video) {
   return function(dispatch, getState) {
+    dispatch(requestSnapshot());
+
     let timer;
 
     timer = setInterval(function() {

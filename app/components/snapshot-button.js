@@ -6,17 +6,26 @@ class SnapshotButton extends React.Component {
     super(props);
   }
 
+  text() {
+    if (this.props.snapshotInProgress) {
+      return String(this.props.countdown);
+    } else {
+      return 'Take snapshot';
+    }
+  }
+
   render() {
     return (
-      <button disabled={this.props.disabled}
-        onClick={this.props.onClick}>Take snapshot</button>
+      <button disabled={this.props.snapshotInProgress}
+        onClick={this.props.onClick}>{this.text()}</button>
     );
   }
 }
 
 SnapshotButton.propTypes = {
-  disabled: PropTypes.bool.isRequired,
-  onClick: PropTypes.func.isRequired
+  onClick: PropTypes.func.isRequired,
+  countdown: PropTypes.number.isRequired,
+  snapshotInProgress: PropTypes.bool.isRequired
 };
 
 export default SnapshotButton;

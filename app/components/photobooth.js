@@ -9,16 +9,17 @@ import Immutable from 'immutable';
 
 class Photobooth extends React.Component {
   render() {
-    const { dispatch, counter, snapshots } = this.props;
+    const { dispatch, counter, snapshots, snapshotInProgress } = this.props;
 
     return (
       <div className="photobooth">
         <h1>React Photobooth</h1>
         <div className="video">
           <Video ref="video" />
-          <SnapshotButton disabled={false} onClick={() => dispatch(initiateCountdown(this.refs.video.video())) }/>
+          <SnapshotButton onClick={() => dispatch(initiateCountdown(this.refs.video.video()))}
+            countdown={counter}
+            snapshotInProgress={snapshotInProgress} />
         </div>
-        <Countdown counter={counter}/>
         <SnapshotList snapshots={snapshots}/>
       </div>
     );
@@ -34,7 +35,8 @@ Photobooth.propTypes = {
 function select(state) {
   return {
     snapshots: state.get('snapshots'),
-    counter: state.get('counter')
+    counter: state.get('counter'),
+    snapshotInProgress: state.get('snapshotInProgress'),
   }
 }
 
