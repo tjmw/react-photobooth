@@ -4,6 +4,7 @@ import Video from './video';
 import SnapshotButton from './snapshot-button';
 import SnapshotList from './snapshot-list';
 import { captureSnapshot } from '../actions';
+import Immutable from 'immutable';
 
 class Photobooth extends React.Component {
   render() {
@@ -23,14 +24,14 @@ class Photobooth extends React.Component {
 }
 
 Photobooth.propTypes = {
-  snapshots: PropTypes.array.isRequired
+  snapshots: PropTypes.instanceOf(Immutable.List).isRequired
 }
 
 // Which props do we want to inject, given the global state?
 // Note: use https://github.com/faassen/reselect for better performance.
 function select(state) {
   return {
-    snapshots: state.snapshots
+    snapshots: state.get('snapshots')
   }
 }
 

@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import Snapshot from './snapshot';
+import Immutable from 'immutable';
 
 class SnapshotList extends React.Component {
   constructor(props) {
@@ -18,7 +19,7 @@ class SnapshotList extends React.Component {
 }
 
 SnapshotList.propTypes = {
-  snapshots: PropTypes.array.isRequired
+  snapshots: PropTypes.instanceOf(Immutable.List).isRequired
 };
 
 export default SnapshotList;
